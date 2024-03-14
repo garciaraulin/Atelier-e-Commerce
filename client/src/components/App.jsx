@@ -10,7 +10,6 @@ import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
 import { HiOutlineBuildingStorefront } from "react-icons/hi2";
 import { MdDarkMode } from "react-icons/md";
 import { LuSun } from "react-icons/lu";
-import { useDarkMode } from '../DarkModeContext';
 const App = () => {
   //-------------------------------------------------------
   // Shared App states and variables
@@ -23,7 +22,7 @@ const App = () => {
   const [relatedItems, setRelatedItems] = useState([]);
   const ratingsAndReviewsRef = useRef(null); // to scroll down to ratings and reviews from product overview
     // State to track the current mode (true for dark mode, false for light mode)
-   const { isDarkMode, setIsDarkMode } = useDarkMode();
+   const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Function to toggle between dark and light mode
   const toggleDarkMode = () => {
@@ -32,8 +31,6 @@ const App = () => {
   };
 
   // Function and variables to update CSS properties based on dark or light mode
-  const modeClass = isDarkMode ? 'dark-mode' : 'light-mode';
-
   const containerStyle = {
     border: '1px solid ' + (isDarkMode ? 'rgb(255 255 255 / 30%)' : '#ccc'),
     padding: '16px',
@@ -135,8 +132,8 @@ const App = () => {
   return (
     <div className="main-container">
       {/* Logo and search input, fake stuff to make it look more real */}
-      <div className={`widget-container nav-bar ${modeClass}`}><h1 className="logo-container"><HiOutlineBuildingStorefront /> <b className="logo-text">KFC Logo</b></h1>
-      <i><i className={`dark-mode-toggle ${modeClass}`} onClick={toggleDarkMode}>
+      <div className={`widget-container nav-bar ${isDarkMode ? 'dark-mode' : 'light-mode'}`}><h1 className="logo-container"><HiOutlineBuildingStorefront /> <b className="logo-text">KFC Logo</b></h1>
+      <i><i className={`dark-mode-toggle ${isDarkMode}`} onClick={toggleDarkMode}>
       {isDarkMode ? <LuSun className="dark-mode-icon" /> : <MdDarkMode className="dark-mode-icon" />}
     </i><span className="fake-search"> <input id="searchInput" placeholder="Search" />
       <IoSearch className="searchIcon" onClick={handleSearch} /></span>
@@ -145,7 +142,7 @@ const App = () => {
           <i>SITE-WIDE ANNOUSNMENT MESSAGE &mdash;  SALE /&nbsp;</i> DISCOUNT <b>&nbsp;OFFER &nbsp;</b> &mdash;  <u>&nbsp;NEW PRODUCT HIGHLIGHT</u>
       </div>
 
-      <div className="widget-container p-o" style={containerStyle}><ProductOverview setCartData={setCartData} modeClass={modeClass} pDataBulk={pageItemBulk} authKey={token} id={productID} onClickReadAllReviews={scrollToRatingsAndReviews}/></div>
+      <div className="widget-container p-o" style={containerStyle}><ProductOverview setCartData={setCartData} isDarkMode={isDarkMode} pDataBulk={pageItemBulk} authKey={token} id={productID} onClickReadAllReviews={scrollToRatingsAndReviews}/></div>
       <div className="widget-container r-i-container" style={containerStyle}><Related id={productID} product={productData} productBulk={pageItemBulk} data={relatedItems} setID={changeID}/></div>
       <div className="widget-container" style={containerStyle}><RatingsAndReviews id={productID} token={token} ref={ratingsAndReviewsRef}/></div>
       <div className="widget-container" style={containerStyle}><QuestionsAndAnswers id={productID} token={token} productData={productData}/></div>

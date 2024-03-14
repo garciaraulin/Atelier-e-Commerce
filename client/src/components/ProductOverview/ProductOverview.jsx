@@ -13,16 +13,9 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FaFacebookSquare, FaPinterestSquare, FaCheck, FaHeart } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import PropTypes from 'prop-types'; // PropTypes to validate... Prop Types
-import { useDarkMode } from '../../DarkModeContext';
 
-  // const { isDarkMode, setIsDarkMode } = useDarkMode();
-
-  // const toggleDarkMode = () => {
-  //   setIsDarkMode(prevMode => !prevMode);
-  // };
 // ProductOverview Component
-const ProductOverview = ({ setCartData, id, authKey, onClickReadAllReviews }) => {
-  const { isDarkMode } = useDarkMode();
+const ProductOverview = ({ isDarkMode, setCartData, id, authKey, onClickReadAllReviews }) => {
   // console.log('isDarkMode', isDarkMode)
   // console.log('authKey', authKey)
   // ProductOverview.propTypes = {

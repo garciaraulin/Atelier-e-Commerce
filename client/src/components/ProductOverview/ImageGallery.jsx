@@ -5,9 +5,6 @@ import { FaCircleArrowRight, FaCircleArrowLeft } from "react-icons/fa6";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { isValidURL } from './Utils';
 
-// import ReactImageZoom from 'react-image-zoom'; // more info about react-image-zoom -> https://www.npmjs.com/package/react-image-zoom
-// react-image-zoom demo: https://malaman.github.io/react-image-zoom/example/index.html
-
 const ImageGallery = ({ isDarkMode, selectedStyle, currentStyleId }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   // Image Gallery staff
